@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+
+}
+
+.app {
+  width: 100vh;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.app > div {
+  margin-right: 50px;
+}
+.error{
+  color: red;
+  font-size: 40px;
+}
+
+.counter{
+  color:rgba(28, 211, 232, 0.89);
+  font-size: 40px;
+}
+
+.button{
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 60px;
+  height: 25px;
+  border: none;
+background-color: rgba(28, 211, 232, 0.89)
+
+}
