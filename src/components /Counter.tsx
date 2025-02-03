@@ -23,6 +23,22 @@ export const Counter = () => {
         setStartCount(start)
     }
 
+    const onChangeInputMaxValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
+        setMax(Number(event.target.value))
+        setMaxCount(Number(event.target.value))
+
+    }
+
+    const onChangeInputStartValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
+        setStart(Number(event.target.value))
+        setStartCount(Number(event.target.value))
+    }
+
+    const onClickSetHandler = ()=>{
+        // setStartValueCount(start);
+        // setMaxValueCount(max);
+    }
+
     return (
         <Container>
             <ContainerSettingCounter>
