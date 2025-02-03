@@ -4,7 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: black;
+  font-size: 14px;
+  /*background-color: black;*/
 
 }
 
@@ -39,4 +40,10 @@
   border: none;
 background-color: rgba(28, 211, 232, 0.89)
 
+}
+
+.input{
+  width: 70px;
+  text-align: center;
+  font-size: 12px;
 }
