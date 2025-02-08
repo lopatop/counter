@@ -12,8 +12,13 @@ export const Counter = () => {
     const [maxValueCount, setMaxCount] = useState(max);
 
     const [messageWindow, setMessageWindow] = useState(false);
+
     const [startError, setStartError] = useState<string | null>(null);
     const [maxError, setMaxError] = useState<string | null>(null);
+
+
+
+    const startMessage = "enter values and press 'set'"
 
     const validateValues = (newStart: number, newMax: number) => {
         let startErr = null
@@ -36,34 +41,36 @@ export const Counter = () => {
     const onClickCounter = () => {
         if (startCount < maxValueCount) {
             setStartCount(startCount + 1)
+
         }
     }
 
     const onClickResetCounter = () => {
         setStartCount(start)
+
     }
 
-    const onChangeInputMaxValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
-        setMax(Number(event.target.value))
-        setMaxCount(Number(event.target.value))
+    const onChangeInputMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = Number(event.currentTarget.value)
         setMax(value)
+        setMaxCount(value)
 
         if (validateValues(start, value)) {
             setMessageWindow(false)
         }
     }
 
-    const onChangeInputStartValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
-        setStart(Number(event.target.value))
-        setStartCount(Number(event.target.value))
+    const onChangeInputStartValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = Number(event.currentTarget.value)
+        setStart(value)
+        setStartCount(value)
+
         if (validateValues(value, max)) {
             setMessageWindow(false);
         }
     }
 
-    const onClickSetHandler = ()=>{
-        // setStartValueCount(start);
-        // setMaxValueCount(max);
+    const onClickSetHandler = () => {
         if (validateValues(start, max)) {
             setMessageWindow(true)
         }
@@ -73,41 +80,48 @@ export const Counter = () => {
         <Container>
             <ContainerSettingCounter>
                 <CounterSettingValue>
-                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <div style={{display: "flex", justifyContent: "space-around"}}>
                         <label>max value:</label>
-                        <input className='input' value={max} type="number" onChange={onChangeInputMaxValueHandler} />
+                        <input className={maxError ? 'input inputError' : 'input'} value={max} type="number"
+                               onChange={onChangeInputMaxValueHandler}/>
                     </div>
 
-                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <div style={{display: "flex", justifyContent: "space-around"}}>
                         <label>start value:</label>
-                        <input className='input' value={start} type="number" onChange={onChangeInputStartValueHandler}/>
+                        <input className={startError ? 'input inputError' : 'input'} value={start} type="number"
+                               onChange={onChangeInputStartValueHandler}/>
                     </div>
                 </CounterSettingValue>
                 <ButtonSettingContainer>
-                    <Button className='button' name='set' onClick={onClickSetHandler}/>
+                    <Button className='button' name='set' onClick={onClickSetHandler}
+                            disabled={!!maxError || !!startError || messageWindow}/>
                 </ButtonSettingContainer>
 
             </ContainerSettingCounter>
 
-        <ContainerCounter>
+            <ContainerCounter>
 
-            <CounterValue className={startCount === maxValueCount ? 'error' : 'counter'}>
-                {startCount}
+                <CounterValue className={startCount === maxValueCount ? 'error' : 'counter'}>
+                    {messageWindow ? startCount : startError || maxError ?
+                        <span className='messageError'>{startError}</span> : <span>{startMessage}</span>}
 
-            </CounterValue>
-            <ButtonContainer>
-                <Button className='button' name="inc" onClick={onClickCounter} disabled={startCount >= maxValueCount}/>
-                <Button className='button' name="reset" onClick={onClickResetCounter} disabled={startCount === start}/>
-            </ButtonContainer>
-        </ContainerCounter>
+
+                </CounterValue>
+                <ButtonContainer>
+                    <Button className='button' name="inc" onClick={onClickCounter}
+                            disabled={startCount >= maxValueCount || !messageWindow}/>
+                    <Button className='button' name="reset" onClick={onClickResetCounter}
+                            disabled={startCount === start}/>
+                </ButtonContainer>
+            </ContainerCounter>
         </Container>
     );
 };
 
 
 const Container = styled.div`
-display: flex;
-    gap: 100px 
+    display: flex;
+    gap: 100px
 `
 
 const ContainerSettingCounter = styled.div`
@@ -116,7 +130,7 @@ const ContainerSettingCounter = styled.div`
     border: 1px solid rgba(28, 211, 232, 0.89);
     border-radius: 5px;
     padding: 8px;
-    
+
 `
 
 const CounterSettingValue = styled.div`
@@ -128,7 +142,7 @@ const CounterSettingValue = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
+
 `
 
 const ButtonSettingContainer = styled.div`
