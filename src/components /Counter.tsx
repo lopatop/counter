@@ -44,16 +44,22 @@ export const Counter = () => {
         setMax(Number(event.target.value))
         setMaxCount(Number(event.target.value))
 
+        if (validateValues(start, value)) {
+        }
     }
 
     const onChangeInputStartValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
         setStart(Number(event.target.value))
         setStartCount(Number(event.target.value))
+        if (validateValues(value, max)) {
+        }
     }
 
     const onClickSetHandler = ()=>{
         // setStartValueCount(start);
         // setMaxValueCount(max);
+        if (validateValues(start, max)) {
+        }
     }
 
     return (
