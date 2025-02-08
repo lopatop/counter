@@ -13,6 +13,7 @@ export const Counter = () => {
 
     const [messageWindow, setMessageWindow] = useState(false);
     const [startError, setStartError] = useState<string | null>(null);
+    const [maxError, setMaxError] = useState<string | null>(null);
 
     const validateValues = (newStart: number, newMax: number) => {
         let startErr = null
@@ -45,6 +46,7 @@ export const Counter = () => {
     const onChangeInputMaxValueHandler =(event:ChangeEvent<HTMLInputElement>) => {
         setMax(Number(event.target.value))
         setMaxCount(Number(event.target.value))
+        setMax(value)
 
         if (validateValues(start, value)) {
             setMessageWindow(false)
