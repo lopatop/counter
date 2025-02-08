@@ -1,49 +1,59 @@
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 14px;
-  /*background-color: black;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    /*background-color: black;*/
 
 }
 
 .app {
-  width: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
 .app > div {
-  margin-right: 50px;
-}
-.error{
-  color: red;
-  font-size: 40px;
+    margin-right: 50px;
 }
 
-.counter{
-  color:rgba(28, 211, 232, 0.89);
-  font-size: 40px;
+.error {
+    color: red;
+    font-size: 40px;
 }
 
-.button{
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 5px;
-  width: 60px;
-  height: 25px;
-  border: none;
-background-color: rgba(28, 211, 232, 0.89)
+.counter {
+    color: rgba(28, 211, 232, 0.89);
+    font-size: 40px;
+}
+
+.button {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 60px;
+    height: 25px;
+    border: none;
+    background-color: rgba(28, 211, 232, 0.89)
 
 }
 
-.input{
-  width: 70px;
-  text-align: center;
-  font-size: 12px;
+.input {
+    width: 70px;
+    text-align: center;
+    font-size: 12px;
+}
+.inputError.input{
+    background-color: #f47e7e;
+    border-color: red;
+}
+
+.messageError {
+    color: red;
+    font-weight: bold;
 }
