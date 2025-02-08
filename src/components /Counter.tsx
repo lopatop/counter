@@ -11,6 +11,7 @@ export const Counter = () => {
     const [startCount, setStartCount] = useState(start);
     const [maxValueCount, setMaxCount] = useState(max);
 
+    const [messageWindow, setMessageWindow] = useState(false);
 
     const validateValues = (newStart: number, newMax: number) => {
         let startErr = null
@@ -45,6 +46,7 @@ export const Counter = () => {
         setMaxCount(Number(event.target.value))
 
         if (validateValues(start, value)) {
+            setMessageWindow(false)
         }
     }
 
@@ -52,6 +54,7 @@ export const Counter = () => {
         setStart(Number(event.target.value))
         setStartCount(Number(event.target.value))
         if (validateValues(value, max)) {
+            setMessageWindow(false);
         }
     }
 
@@ -59,6 +62,7 @@ export const Counter = () => {
         // setStartValueCount(start);
         // setMaxValueCount(max);
         if (validateValues(start, max)) {
+            setMessageWindow(true)
         }
     }
 
