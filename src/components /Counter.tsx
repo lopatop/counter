@@ -12,6 +12,23 @@ export const Counter = () => {
     const [maxValueCount, setMaxCount] = useState(max);
 
 
+    const validateValues = (newStart: number, newMax: number) => {
+        let startErr = null
+        let maxErr = null
+
+        if (newStart < 0 || newStart >= newMax) {
+            startErr = 'Incorrect value'
+            setMessageWindow(false)
+        }
+        if (newMax <= 0 || newMax <= newStart) {
+            maxErr = 'Incorrect value'
+            setMessageWindow(false)
+        }
+        setStartError(startErr)
+        setMaxError(maxErr)
+
+        return !(startErr || maxErr)
+    }
 
     const onClickCounter = () => {
         if (startCount < maxValueCount) {
