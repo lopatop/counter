@@ -12,6 +12,7 @@ export const Counter = () => {
     const [maxValueCount, setMaxCount] = useState(max);
 
     const [messageWindow, setMessageWindow] = useState(false);
+    const [startError, setStartError] = useState<string | null>(null);
 
     const validateValues = (newStart: number, newMax: number) => {
         let startErr = null
