@@ -104,13 +104,13 @@ export const Counter = () => {
             <ContainerSettingCounter>
                 <CounterSettingValue>
                     <div style={{display: "flex", justifyContent: "space-around"}}>
-                        <label>max value:</label>
+                        <label className="label">max value:</label>
                         <input className={maxError ? 'input inputError' : 'input'} value={max} type="number"
                                onChange={onChangeInputMaxValueHandler}/>
                     </div>
 
                     <div style={{display: "flex", justifyContent: "space-around"}}>
-                        <label>start value:</label>
+                        <label className="label">start value:</label>
                         <input className={startError ? 'input inputError' : 'input'} value={start} type="number"
                                onChange={onChangeInputStartValueHandler}/>
                     </div>
