@@ -16,6 +16,9 @@ export const Counter = () => {
     const [startError, setStartError] = useState<string | null>(null);
     const [maxError, setMaxError] = useState<string | null>(null);
 
+    useEffect(() => {
+        localStorage.setItem('start', JSON.stringify(start))
+    }, [start])
 
 
     const startMessage = "enter values and press 'set'"
