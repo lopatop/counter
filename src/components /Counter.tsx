@@ -17,8 +17,28 @@ export const Counter = () => {
     const [maxError, setMaxError] = useState<string | null>(null);
 
     useEffect(() => {
+        const storedStart = localStorage.getItem("start")
+        const storedMax = localStorage.getItem("max")
+
+        if (storedStart) {
+            const parsedStart = JSON.parse(storedStart)
+            setStart(parsedStart)
+            setStartCount(parsedStart)
+        }
+        if (storedMax) {
+            const parsedMax = JSON.parse(storedMax)
+            setMax(parsedMax);
+            setMaxCount(parsedMax);
+        }
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem('start', JSON.stringify(start))
     }, [start])
+
+    useEffect(() => {
+        localStorage.setItem('max', JSON.stringify(max))
+    }, [max])
 
 
     const startMessage = "enter values and press 'set'"
