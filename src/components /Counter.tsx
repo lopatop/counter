@@ -1,5 +1,5 @@
 import {Button} from "./Button.tsx";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import styled from "styled-components";
 
 
@@ -9,7 +9,7 @@ export const Counter = () => {
     const [max, setMax] = useState(5);
 
     const [startCount, setStartCount] = useState(start);
-    const [maxValueCount, setMaxCount] = useState(max);
+    const [maxCount, setMaxCount] = useState(max);
 
     const [messageWindow, setMessageWindow] = useState(false);
 
@@ -17,28 +17,8 @@ export const Counter = () => {
     const [maxError, setMaxError] = useState<string | null>(null);
 
     useEffect(() => {
-        const storedStart = localStorage.getItem("start")
-        const storedMax = localStorage.getItem("max")
-
-        if (storedStart) {
-            const parsedStart = JSON.parse(storedStart)
-            setStart(parsedStart)
-            setStartCount(parsedStart)
-        }
-        if (storedMax) {
-            const parsedMax = JSON.parse(storedMax)
-            setMax(parsedMax);
-            setMaxCount(parsedMax);
-        }
-    }, []);
-
-    useEffect(() => {
         localStorage.setItem('start', JSON.stringify(start))
     }, [start])
-
-    useEffect(() => {
-        localStorage.setItem('max', JSON.stringify(max))
-    }, [max])
 
 
     const startMessage = "enter values and press 'set'"
@@ -62,7 +42,7 @@ export const Counter = () => {
     }
 
     const onClickCounter = () => {
-        if (startCount < maxValueCount) {
+        if (startCount < maxCount) {
             setStartCount(startCount + 1)
 
         }
@@ -124,7 +104,7 @@ export const Counter = () => {
 
             <ContainerCounter>
 
-                <CounterValue className={startCount === maxValueCount ? 'error' : 'counter'}>
+                <CounterValue className={startCount === maxCount ? 'error' : 'counter'}>
                     {messageWindow ? startCount : startError || maxError ?
                         <span className='messageError'>{startError}</span> : <span>{startMessage}</span>}
 
@@ -132,7 +112,7 @@ export const Counter = () => {
                 </CounterValue>
                 <ButtonContainer>
                     <Button className='button' name="inc" onClick={onClickCounter}
-                            disabled={startCount >= maxValueCount || !messageWindow}/>
+                            disabled={startCount >= maxCount || !messageWindow}/>
                     <Button className='button' name="reset" onClick={onClickResetCounter}
                             disabled={startCount === start}/>
                 </ButtonContainer>
@@ -144,7 +124,8 @@ export const Counter = () => {
 
 const Container = styled.div`
     display: flex;
-    gap: 100px
+    flex-direction: column;
+    gap: 20px
 `
 
 const ContainerSettingCounter = styled.div`
